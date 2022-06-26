@@ -1,4 +1,11 @@
 # create event 
+API
+- event_assign // init context of struct event (**NOT Recommand**, this will dependent size of struct event, Poor Compatibility)
+- event_new // allocate memory, and init context (call event_assign)
+- event_add // add to evbase
+- event_del // remove from evbase
+- event_free // event_del, and free memory
+
 1. create timer (one-shot, persist)
 ```c
 // @remark event_new, must use event_del to release resource.
@@ -14,7 +21,7 @@ void timer_cb(evutil_socket_t sock, short event, void *priv)
   printf("timeout call, cnt=%d\n", cnt++);
  
   if (cnt > 3) {
-      event_del(timer);
+      event_free(timer); // event_free also do event_del in it
   }
 }
 
