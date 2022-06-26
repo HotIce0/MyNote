@@ -1,8 +1,8 @@
 # create event 
 1. create timer (one-shot, persist)
 ```c
-# @remark event_new, must use event_del to release resource.
-#         in this demo, one-shot event has memory leak. (just for simple)
+// @remark event_new, must use event_del to release resource.
+//         in this demo, one-shot event has memory leak. (just for simple)
 #include <stdio.h>
 #include <event2/event.h>
 
