@@ -8,8 +8,6 @@ API
 
 1. create timer (one-shot, persist)
 ```c
-// @remark event_new, must use event_del to release resource.
-//         in this demo, one-shot event has memory leak. (just for simple)
 #include <stdio.h>
 #include <event2/event.h>
 
@@ -21,7 +19,7 @@ void timer_cb(evutil_socket_t sock, short event, void *priv)
   printf("timeout call, cnt=%d\n", cnt++);
  
   if (cnt > 3) {
-      event_free(timer); // event_free also do event_del in it
+      event_del(timer);
   }
 }
 
@@ -38,6 +36,7 @@ int main(void)
  event_add(timer, &tv);
  
  event_base_dispatch(base);
+ event_free(timer);
  event_base_free(base);
  
  printf("exit\n");
