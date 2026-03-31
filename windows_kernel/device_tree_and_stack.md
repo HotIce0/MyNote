@@ -16,6 +16,10 @@ DeviceNode(usbdev1)  DeviceNode(usbdev2)      Upper
      > **warning**: Be careful. If you use the Non-Top-DeviceObject. DeviceObjectExtension->DeviceNode remains NULL if the DeviceObject (FiDO) has the DO_DEVICE_INITIALIZING flag set
    3. Get Parent Device Node: DeviceNode->Parent;
 
+### 1.1.2 Get Device Node Property
+1. [IoGetDeviceProperty](https://learn.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/nf-wdm-iogetdeviceproperty)
+   > **warning**: First parameter DeviceObject must be PDO (top of device stack). otherwise the function returns STATUS_INVALID_DEVICE_REQUEST.
+
 ## 1.2 Device Stack
 DeviceStack of DeviceNode(usbdev1)
 ```
